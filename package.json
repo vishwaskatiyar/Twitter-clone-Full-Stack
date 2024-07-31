@@ -2,7 +2,7 @@
   "name": "twitter",
   "version": "1.0.0",
   "description": "",
-  "main": "Backendserver.js",
+  "main": "Backend/server.js",
   "scripts": {
     "dev":"nodemon Backend/server.js",
     "start":"node Backend/server.js"
