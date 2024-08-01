@@ -1,15 +1,26 @@
-import express from 'express';
-import { protectRoute } from '../middleware/protectRoute.js';
+import express from "express";
+import { protectRoute } from "../middleware/protectRoute.js";
 
-import { createPost, deletePost, commentOnPost, likeUnlikePost } from '../controllers/post.controller.js';
+import {
+    createPost,
+    deletePost,
+    commentOnPost,
+    likeUnlikePost,
+    getAllPost,
+    getLikedPost,
+    getfollowingPost,
+    getUserPost
+} from "../controllers/post.controller.js";
+
 const router = express.Router();
 
-router.post("/create", protectRoute, createPost)
-router.post("/like/:id", protectRoute, likeUnlikePost)
-router.post("/comment/:id", protectRoute, commentOnPost)
-router.delete("/:id", protectRoute, deletePost)
+router.get("/all", protectRoute, getAllPost);
+router.get("/following", protectRoute, getfollowingPost);
+router.get("/likes/:id", protectRoute, getLikedPost);
+router.get("/user/:username", protectRoute, getUserPost);
+router.post("/create", protectRoute, createPost);
+router.post("/like/:id", protectRoute, likeUnlikePost);
+router.post("/comment/:id", protectRoute, commentOnPost);
+router.delete("/:id", protectRoute, deletePost);
 
-
-
-
-export default router
+export default router;
