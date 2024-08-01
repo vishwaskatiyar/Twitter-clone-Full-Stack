@@ -67,7 +67,9 @@ export const login = async (req, res) => {
         // console.log('Password:', password);
 
         if (!username || !password) {
-            return res.status(400).json({ error: "Username and password are required" });
+            return res
+                .status(400)
+                .json({ error: "Username and password are required" });
         }
         const user = await User.findOne({ username });
         if (!user) {
@@ -75,10 +77,7 @@ export const login = async (req, res) => {
         }
         // console.log('Stored Password Hash:', user.password);
 
-        const isPasswordCorrect = await bcrypt.compare(
-            password,
-            user.password
-        );
+        const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
         if (!user || !isPasswordCorrect) {
             return res.status(400).json({ error: "Invalid username or password" });
@@ -117,6 +116,5 @@ export const getMe = async (req, res) => {
     } catch (err) {
         console.log("Error in getMe controller", error.message);
         res.status(500).json({ error: "Internal Server Error" });
-
     }
-}
+};
