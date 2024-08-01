@@ -95,12 +95,9 @@ export const updateUser = async (req, res) => {
             (!newPassword && currentPassword) ||
             (!currentPassword && newPassword)
         ) {
-            return res
-                .status(400)
-                .json({
-                    message:
-                        "You must provide both current and new passwords or neither.",
-                });
+            return res.status(400).json({
+                message: "You must provide both current and new passwords or neither.",
+            });
         }
         if (currentPassword && newPassword) {
             const isMatch = await bcrypt.compare(currentPassword, user.password);
@@ -119,7 +116,9 @@ export const updateUser = async (req, res) => {
         }
         if (profileImg) {
             if (user.profileImg) {
-                await cloudinary.uploader.destroy(user.profileImg.split("/").pop().split(".")[0]);
+                await cloudinary.uploader.destroy(
+                    user.profileImg.split("/").pop().split(".")[0]
+                );
             }
 
             const uploadedResponse = await cloudinary.uploader.upload(profileImg);
@@ -127,7 +126,9 @@ export const updateUser = async (req, res) => {
         }
         if (coverImg) {
             if (user.coverImg) {
-                await cloudinary.uploader.destroy(user.coverImg.split("/").pop().split(".")[0]);
+                await cloudinary.uploader.destroy(
+                    user.coverImg.split("/").pop().split(".")[0]
+                );
             }
             const uploadedResponse = await cloudinary.uploader.upload(coverImg);
             coverImg = uploadedResponse.secure_url;
@@ -143,7 +144,6 @@ export const updateUser = async (req, res) => {
         user.password = null; // to prevent exposing user's password in response
 
         return res.status(200).json(user);
-
     } catch (e) {
         console.error("Error in updateUser", e);
         res.status(500).json({ error: e });
