@@ -20,7 +20,10 @@ cloudinary.config({
 
 });
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: 'https://twitter-clone-full-stack-lovat.vercel.app/',
+}));
+
 
 app.get('/', (req, res) => {
     res.send('CORS enabled for all origins!');
