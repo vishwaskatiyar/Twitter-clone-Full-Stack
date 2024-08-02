@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://localhost:10000',
+        target: 'https://twitter-clone-full-stack-0ru5.onrender.com',
         changeOrigin: true,
       },
     }
