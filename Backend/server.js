@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary"
+import cors from "cors"
 
 import userRoutes from "./routes/user.routes.js"
 import authRoutes from "./routes/auth.routes.js";
@@ -19,7 +20,11 @@ cloudinary.config({
 
 });
 const app = express();
+app.use(cors());
 
+app.get('/', (req, res) => {
+    res.send('CORS enabled for all origins!');
+});
 // console.log(process.env.MONGO_URI);
 const PORT = process.env.PORT || 10000;
 
