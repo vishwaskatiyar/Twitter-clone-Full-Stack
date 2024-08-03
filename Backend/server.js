@@ -20,14 +20,20 @@ cloudinary.config({
 
 });
 const app = express();
+// app.use(cors({
+//     origin: 'https://twitter-clone-full-stack-lovat.vercel.app/',
+// }));
+
 app.use(cors({
-    origin: 'https://twitter-clone-full-stack-lovat.vercel.app/',
-}));
+    origin: 'http://localhost:5173',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+}))
 
 
-app.get('/', (req, res) => {
-    res.send('CORS enabled for all origins!');
-});
+// app.get('/', (req, res) => {
+//     res.send('CORS enabled for all origins!');
+// });
 // console.log(process.env.MONGO_URI);
 const PORT = process.env.PORT || 10000;
 

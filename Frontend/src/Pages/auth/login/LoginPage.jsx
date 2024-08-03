@@ -23,6 +23,7 @@ const LoginPage = () => {
   } = useMutation({
     mutationFn: async ({ username, password }) => {
       try {
+        console.log("Login", username, password);
         const res = await fetch("/api/auth/login", {
           method: "POST",
           headers: {
@@ -30,12 +31,14 @@ const LoginPage = () => {
           },
           body: JSON.stringify({ username, password }),
         });
+        console.log(res);
         const data = await res.json();
 
         if (!res.ok) {
           throw new Error(data.error || "Something went wrong");
         }
       } catch (e) {
+        console.log("error");
         throw new Error(e);
       }
     },
