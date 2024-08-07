@@ -14,7 +14,7 @@ const NotificationPage = () => {
     queryKey: ["notifications"],
     queryFn: async () => {
       try {
-        const res = await fetch("/api/notification/");
+        const res = await fetch("/api/notification");
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Something went wrong");
         return data;
@@ -27,7 +27,7 @@ const NotificationPage = () => {
   const { mutate: deleteNotifications } = useMutation({
     mutationFn: async () => {
       try {
-        const res = await fetch("/api/notifications/", {
+        const res = await fetch("/api/notification", {
           method: "DELETE",
         });
         const data = await res.json();
@@ -43,6 +43,7 @@ const NotificationPage = () => {
       queryClient.invalidateQueries({ queryKey: ["notifications"] });
     },
     onError: (error) => {
+      console.log(error);
       toast.error(error.message);
     },
   });
