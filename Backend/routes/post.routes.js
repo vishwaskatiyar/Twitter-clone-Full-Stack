@@ -8,14 +8,14 @@ import {
     likeUnlikePost,
     getAllPost,
     getLikedPost,
-    getfollowingPost,
+    getFollowingPosts,
     getUserPost
 } from "../controllers/post.controller.js";
 
 const router = express.Router();
 
 router.get("/all", protectRoute, getAllPost);
-router.get("/following", protectRoute, getfollowingPost);
+router.get("/following", protectRoute, getFollowingPosts);
 router.get("/likes/:id", protectRoute, getLikedPost);
 router.get("/user/:username", protectRoute, getUserPost);
 router.post("/create", protectRoute, createPost);
