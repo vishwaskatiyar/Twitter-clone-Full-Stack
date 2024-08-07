@@ -163,7 +163,7 @@ export const getLikedPost = async (req, res) => {
 };
 
 
-export const getfollowingPost = async (req, res) => {
+export const getfollowingPosts = async (req, res) => {
     try {
         const userId = req.user._id;
         const user = await User.findById(userId);
